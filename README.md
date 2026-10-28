@@ -2,4 +2,4 @@
 
 The marketing site for Muscular Workout Log, the iOS / iPadOS workout log app.
 
-[dominikbutz.github.io/muscular-web](https://dominikbutz.github.io/muscular-web/)
+[timepod-dev.github.io/muscular-web](https://timepod-dev.github.io/muscular-web/)
