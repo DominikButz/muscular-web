@@ -6,8 +6,8 @@ Context for agents working in this repository.
 
 The static marketing site for **Muscular Workout Log**, the iOS / iPadOS workout log app. It replaced the old Firebase-hosted React site at muscular-app.com.
 
-Live site: https://dominikbutz.github.io/muscular-web/
-Repository: https://github.com/DominikButz/muscular-web
+Live site: https://muscular.timepod.dev/
+Repository: https://github.com/timepod-dev/muscular-web
 
 There is no backend, no build step, no JavaScript, and no third-party requests.
 
@@ -25,7 +25,7 @@ There is no backend, no build step, no JavaScript, and no third-party requests.
 | `assets/img/` | WebP screenshots, PNG icons, SVG App Store badge, `og.png` |
 | `.github/workflows/deploy.yml` | Publishes the site on push to `main` |
 | `serve.sh` | Local preview |
-| `robots.txt`, `sitemap.xml` | Crawler files, canonical to github.io |
+| `robots.txt`, `sitemap.xml` | Crawler files, canonical to `muscular.timepod.dev` |
 | `.nojekyll` | Keeps Jekyll off if branch-based Pages is ever used |
 
 ### Local preview
@@ -50,10 +50,10 @@ The look is derived from the app itself: charcoal UI, the app's orange brand col
 
 - Copy lives directly in the HTML files.
 - The App Store link is `https://apps.apple.com/us/app/muscular-workout-log/id1513704154`.
-- The support address is `support@muscular-app.com`, used in `support.html`, `index.html`, and `privacy.html`.
+- The support address is `muscular-support@timepod.dev`, used in `support.html`, `index.html`, and `privacy.html`.
 - Screenshots are WebP files in `assets/img/`. When swapping one, update the `src`, `width`, and `height` attributes.
-- Keep asset and page paths relative. Do not add a leading slash. The site must work at `/muscular-web/` and at a domain root.
-- Keep the legal text intact unless the user asks for changes. The privacy and terms pages still reference `www.muscular-app.com`.
+- Keep asset and page paths relative. Do not add a leading slash. The site is served from the domain root.
+- Keep the legal text intact unless the user asks for changes. The privacy and terms pages still reference `muscular.timepod.dev`.
 
 ### Images
 
@@ -69,17 +69,17 @@ Phone screenshots are about 746x1496. Landscape charts were resized to 1400 wide
 
 - GitHub Pages publishes from GitHub Actions, not from a branch.
 - Every push to `main` runs `.github/workflows/deploy.yml`, which copies the repo root to `_site`, uploads it, and deploys.
-- Canonical base URL: https://dominikbutz.github.io/muscular-web/
+- Canonical base URL: https://muscular.timepod.dev/
 - If Pages is ever disabled, enable it under **Settings > Pages** with **Source: GitHub Actions**. The default workflow token cannot create the Pages site itself.
 
 ### Custom domain
 
-If `muscular-app.com` is pointed at GitHub Pages:
+The site is served at https://muscular.timepod.dev. The custom domain is set in **Settings > Pages**, so no `CNAME` file is needed for the Actions deploy.
 
-1. Add a `CNAME` file containing `muscular-app.com`.
-2. Add the DNS records shown under **Settings > Pages**.
-3. Replace the canonical and Open Graph URLs in all HTML pages, `sitemap.xml`, and `robots.txt`.
-4. Update the support address and the website references in `privacy.html` and `terms.html` if the old domain stops working.
+- DNS is a `muscular` CNAME pointing to `timepod-dev.github.io`. Do not use A records for a subdomain, GitHub reports `InvalidARecordError` for them.
+- Each additional Pages project gets its own subdomain CNAME to `timepod-dev.github.io` plus its own custom domain in that repo's settings. Certificates are issued per hostname.
+- If the domain ever changes, replace the host in the canonical and Open Graph tags of all four pages, in `sitemap.xml`, in `robots.txt`, and in this file.
+- Never link to the `timepod-dev.github.io/muscular-web` host. It only redirects to the custom domain, so canonical tags and `og:url` must use `muscular.timepod.dev`.
 
 ### Conventions
 
